@@ -1,10 +1,10 @@
 [package]
-name = "round-robin-tournament"
+name = "round_robin_tournament"
 version = "0.1.0"
 edition = "2018"
 authors = ["Marcel Kaufmann <flocksserver@gmail.com>"]
 description = "Small library to get a round robin schedule for n players."
 license = "MIT OR Apache-2.0"
-keywords = ["round robin", "tournament", "sport"]
+keywords = ["round", "robin", "tournament", "sport"]
 
 [dependencies]
