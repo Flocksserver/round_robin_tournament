@@ -59,7 +59,7 @@ mod tests {
 
     #[test]
     fn round_robin_9_player() {
-        let result = retrieve_encounters(11);
+        let result = retrieve_encounters(9);
         assert_eq!(result, tournament_test_data());
     }
 }
