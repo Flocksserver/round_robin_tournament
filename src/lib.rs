@@ -1,5 +1,4 @@
 pub mod round_robin_tournament {
-
     /// Implementation of the round robin tournament algorithm.
     ///
     /// For a given `number_of_players` it return the pairs and rounds.
@@ -38,7 +37,7 @@ pub mod round_robin_tournament {
 mod tests {
     use crate::round_robin_tournament::retrieve_encounters;
 
-    fn tournament_test_data() -> Vec<Vec<(u32, u32)>>{
+    fn tournament_test_data() -> Vec<Vec<(u32, u32)>> {
         vec![
             vec![(0, 9), (1, 8), (2, 7), (3, 6), (4, 5)],
             vec![(1, 9), (2, 0), (3, 8), (4, 7), (5, 6)],
