@@ -1,0 +1,1 @@
+window.ALL_CRATES = ["round_robin_tournament"];
