@@ -2,12 +2,12 @@
 //!
 //! Provides an interface for passing the number of players to participate in the tournament
 //! and gives a list of of possible rounds. In each round there is a list ofindividual unique pairs.
-//! Each player is represented by a u32 number.
+//! Each player is represented by a usize number.
 //! # Example
 //! ```
 //! use round_robin_tournament::round_robin_tournament::draw;
 //!
-//! let tournament: Vec<Vec<(u32, u32)>> = draw(10);
+//! let tournament: Vec<Vec<(usize, usize)>> = draw(10);
 //! // First round with 5 matches
 //! let first_round = tournament.first().unwrap();
 //! // First match with player id 0 against player id 9
@@ -24,7 +24,7 @@ pub mod round_robin_tournament {
     /// # Example
     /// ```
     /// use round_robin_tournament::round_robin_tournament::draw;
-    /// let tournament: Vec<Vec<(u32, u32)>> = draw(10);
+    /// let tournament: Vec<Vec<(usize, usize)>> = draw(10);
     /// /*
     /// [(0, 9), (1, 8), (2, 7), (3, 6), (4, 5)]
     /// [(1, 9), (2, 0), (3, 8), (4, 7), (5, 6)]
@@ -37,11 +37,11 @@ pub mod round_robin_tournament {
     /// [(8, 9), (0, 7), (1, 6), (2, 5), (3, 4)]
     /// */
     /// ```
-    pub fn draw(number_of_players: u32) -> Vec<Vec<(u32, u32)>> {
+    pub fn draw(number_of_players: usize) -> Vec<Vec<(usize, usize)>> {
         let nop = if number_of_players % 2 == 0 { number_of_players } else { number_of_players + 1 };
-        let mut players: Vec<u32> = (0..nop).collect();
+        let mut players: Vec<usize> = (0..nop).collect();
 
-        let mut rounds: Vec<Vec<(u32, u32)>> = Vec::new();
+        let mut rounds: Vec<Vec<(usize, usize)>> = Vec::new();
         let fixed_player = players.pop().unwrap().clone();
         for i in 0..(nop - 1) {
             let mut pairs = Vec::new();
@@ -56,8 +56,8 @@ pub mod round_robin_tournament {
             let split_list = players_clone.split_at_mut(((nop - 2) / 2) as usize);
             split_list.1.reverse();
             for j in 0..((nop - 2) / 2) {
-                let a: Option<&u32> = split_list.0.get(j as usize);
-                let b: Option<&u32> = split_list.1.get(j as usize);
+                let a: Option<&usize> = split_list.0.get(j as usize);
+                let b: Option<&usize> = split_list.1.get(j as usize);
                 if a.is_some() && b.is_some() {
                     pairs.push((a.unwrap().clone(), b.unwrap().clone()))
                 }
@@ -72,7 +72,7 @@ pub mod round_robin_tournament {
 mod tests {
     use crate::round_robin_tournament::draw;
 
-    fn tournament_test_data() -> Vec<Vec<(u32, u32)>> {
+    fn tournament_test_data() -> Vec<Vec<(usize, usize)>> {
         vec![
             vec![(0, 9), (1, 8), (2, 7), (3, 6), (4, 5)],
             vec![(1, 9), (2, 0), (3, 8), (4, 7), (5, 6)],

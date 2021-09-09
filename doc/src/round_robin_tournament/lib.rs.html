@@ -107,12 +107,12 @@
 <span class="doccomment">//!</span>
 <span class="doccomment">//! Provides an interface for passing the number of players to participate in the tournament</span>
 <span class="doccomment">//! and gives a list of of possible rounds. In each round there is a list ofindividual unique pairs.</span>
-<span class="doccomment">//! Each player is represented by a u32 number.</span>
+<span class="doccomment">//! Each player is represented by a usize number.</span>
 <span class="doccomment">//! # Example</span>
 <span class="doccomment">//! ```</span>
 <span class="doccomment">//! use round_robin_tournament::round_robin_tournament::draw;</span>
 <span class="doccomment">//!</span>
-<span class="doccomment">//! let tournament: Vec&lt;Vec&lt;(u32, u32)&gt;&gt; = draw(10);</span>
+<span class="doccomment">//! let tournament: Vec&lt;Vec&lt;(usize, usize)&gt;&gt; = draw(10);</span>
 <span class="doccomment">//! // First round with 5 matches</span>
 <span class="doccomment">//! let first_round = tournament.first().unwrap();</span>
 <span class="doccomment">//! // First match with player id 0 against player id 9</span>
@@ -129,7 +129,7 @@
     <span class="doccomment">/// # Example</span>
     <span class="doccomment">/// ```</span>
     <span class="doccomment">/// use round_robin_tournament::round_robin_tournament::draw;</span>
-    <span class="doccomment">/// let tournament: Vec&lt;Vec&lt;(u32, u32)&gt;&gt; = draw(10);</span>
+    <span class="doccomment">/// let tournament: Vec&lt;Vec&lt;(usize, usize)&gt;&gt; = draw(10);</span>
     <span class="doccomment">/// /*</span>
     <span class="doccomment">/// [(0, 9), (1, 8), (2, 7), (3, 6), (4, 5)]</span>
     <span class="doccomment">/// [(1, 9), (2, 0), (3, 8), (4, 7), (5, 6)]</span>
@@ -142,11 +142,11 @@
     <span class="doccomment">/// [(8, 9), (0, 7), (1, 6), (2, 5), (3, 4)]</span>
     <span class="doccomment">/// */</span>
     <span class="doccomment">/// ```</span>
-    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw</span>(<span class="ident">number_of_players</span>: <span class="ident">u32</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">u32</span>, <span class="ident">u32</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">pub</span> <span class="kw">fn</span> <span class="ident">draw</span>(<span class="ident">number_of_players</span>: <span class="ident">usize</span>) <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="kw">let</span> <span class="ident">nop</span> <span class="op">=</span> <span class="kw">if</span> <span class="ident">number_of_players</span> <span class="op">%</span> <span class="number">2</span> <span class="op">=</span><span class="op">=</span> <span class="number">0</span> { <span class="ident">number_of_players</span> } <span class="kw">else</span> { <span class="ident">number_of_players</span> <span class="op">+</span> <span class="number">1</span> };
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">players</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="op">=</span> (<span class="number">0</span>..<span class="ident">nop</span>).<span class="ident">collect</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">players</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="op">=</span> (<span class="number">0</span>..<span class="ident">nop</span>).<span class="ident">collect</span>();
 
-        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rounds</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">u32</span>, <span class="ident">u32</span>)<span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
+        <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">rounds</span>: <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>)<span class="op">&gt;</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
         <span class="kw">let</span> <span class="ident">fixed_player</span> <span class="op">=</span> <span class="ident">players</span>.<span class="ident">pop</span>().<span class="ident">unwrap</span>().<span class="ident">clone</span>();
         <span class="kw">for</span> <span class="ident">i</span> <span class="kw">in</span> <span class="number">0</span>..(<span class="ident">nop</span> <span class="op">-</span> <span class="number">1</span>) {
             <span class="kw">let</span> <span class="kw-2">mut</span> <span class="ident">pairs</span> <span class="op">=</span> <span class="ident">Vec::new</span>();
@@ -161,8 +161,8 @@
             <span class="kw">let</span> <span class="ident">split_list</span> <span class="op">=</span> <span class="ident">players_clone</span>.<span class="ident">split_at_mut</span>(((<span class="ident">nop</span> <span class="op">-</span> <span class="number">2</span>) <span class="op">/</span> <span class="number">2</span>) <span class="kw">as</span> <span class="ident">usize</span>);
             <span class="ident">split_list</span>.<span class="number">1</span>.<span class="ident">reverse</span>();
             <span class="kw">for</span> <span class="ident">j</span> <span class="kw">in</span> <span class="number">0</span>..((<span class="ident">nop</span> <span class="op">-</span> <span class="number">2</span>) <span class="op">/</span> <span class="number">2</span>) {
-                <span class="kw">let</span> <span class="ident">a</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">split_list</span>.<span class="number">0</span>.<span class="ident">get</span>(<span class="ident">j</span> <span class="kw">as</span> <span class="ident">usize</span>);
-                <span class="kw">let</span> <span class="ident">b</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">u32</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">split_list</span>.<span class="number">1</span>.<span class="ident">get</span>(<span class="ident">j</span> <span class="kw">as</span> <span class="ident">usize</span>);
+                <span class="kw">let</span> <span class="ident">a</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">split_list</span>.<span class="number">0</span>.<span class="ident">get</span>(<span class="ident">j</span> <span class="kw">as</span> <span class="ident">usize</span>);
+                <span class="kw">let</span> <span class="ident">b</span>: <span class="prelude-ty">Option</span><span class="op">&lt;</span><span class="kw-2">&amp;</span><span class="ident">usize</span><span class="op">&gt;</span> <span class="op">=</span> <span class="ident">split_list</span>.<span class="number">1</span>.<span class="ident">get</span>(<span class="ident">j</span> <span class="kw">as</span> <span class="ident">usize</span>);
                 <span class="kw">if</span> <span class="ident">a</span>.<span class="ident">is_some</span>() <span class="op">&amp;&amp;</span> <span class="ident">b</span>.<span class="ident">is_some</span>() {
                     <span class="ident">pairs</span>.<span class="ident">push</span>((<span class="ident">a</span>.<span class="ident">unwrap</span>().<span class="ident">clone</span>(), <span class="ident">b</span>.<span class="ident">unwrap</span>().<span class="ident">clone</span>()))
                 }
@@ -177,7 +177,7 @@
 <span class="kw">mod</span> <span class="ident">tests</span> {
     <span class="kw">use</span> <span class="kw">crate</span><span class="ident">::round_robin_tournament::draw</span>;
 
-    <span class="kw">fn</span> <span class="ident">tournament_test_data</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">u32</span>, <span class="ident">u32</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
+    <span class="kw">fn</span> <span class="ident">tournament_test_data</span>() <span class="op">-</span><span class="op">&gt;</span> <span class="ident">Vec</span><span class="op">&lt;</span><span class="ident">Vec</span><span class="op">&lt;</span>(<span class="ident">usize</span>, <span class="ident">usize</span>)<span class="op">&gt;</span><span class="op">&gt;</span> {
         <span class="macro">vec!</span>[
             <span class="macro">vec!</span>[(<span class="number">0</span>, <span class="number">9</span>), (<span class="number">1</span>, <span class="number">8</span>), (<span class="number">2</span>, <span class="number">7</span>), (<span class="number">3</span>, <span class="number">6</span>), (<span class="number">4</span>, <span class="number">5</span>)],
             <span class="macro">vec!</span>[(<span class="number">1</span>, <span class="number">9</span>), (<span class="number">2</span>, <span class="number">0</span>), (<span class="number">3</span>, <span class="number">8</span>), (<span class="number">4</span>, <span class="number">7</span>), (<span class="number">5</span>, <span class="number">6</span>)],
