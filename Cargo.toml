@@ -1,6 +1,6 @@
 [package]
 name = "round_robin_tournament"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2018"
 authors = ["Marcel Kaufmann <flocksserver@gmail.com>"]
 description = "Small library to get a round robin schedule for n players."
