@@ -18,7 +18,7 @@
 pub mod round_robin_tournament {
     /// Implementation of the round robin tournament algorithm.
     ///
-    /// For a given `number_of_players` it return the pairs and rounds.
+    /// For a given `number_of_players` it returns the pairs and rounds.
     /// For an odd number of players, the algorithm calculates with `number_of_players` + 1.
     /// So you have to make sure that the player who plays against the highest number has a bye.
     /// # Example
