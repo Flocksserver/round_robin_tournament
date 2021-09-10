@@ -1,1 +1,0 @@
-initSidebarItems({"fn":[["draw","Implementation of the round robin tournament algorithm."]]});

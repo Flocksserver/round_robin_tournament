@@ -1,7 +1,7 @@
 //! Small and simple round robin tournament implementation.
 //!
 //! Provides an interface for passing the number of players to participate in the tournament
-//! and gives a list of of possible rounds. In each round there is a list ofindividual unique pairs.
+//! and gives a list of of possible rounds. In each round there is a list of individual unique pairs.
 //! Each player is represented by a usize number.
 //! # Example
 //! ```

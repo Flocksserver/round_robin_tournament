@@ -1,8 +1,7 @@
 build:
 	cargo build --release
 	cargo test --release
-	rm -R -f ./doc
-	rustdoc src/lib.rs --crate-name round_robin_tournament
+	cargo doc
 
 publish:
 	make build

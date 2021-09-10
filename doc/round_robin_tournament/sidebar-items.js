@@ -1,1 +1,0 @@
-initSidebarItems({"mod":[["round_robin_tournament",""]]});
